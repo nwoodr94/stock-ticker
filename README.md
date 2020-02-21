@@ -1,4 +1,4 @@
-## Stock Market Ticket
+## Stock Market Ticker
 
 This is a full-stack web application in React/Node that utilizes Socket.io to display stock index data in real time.
 
