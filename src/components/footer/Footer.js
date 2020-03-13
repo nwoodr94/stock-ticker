@@ -4,7 +4,7 @@ let style = {
     fontSize: '1rem'
 }
 
-export default class Footer extends React.Component {
+export class Footer extends React.Component {
 
     date = new Date();
     year = this.date.getFullYear();
