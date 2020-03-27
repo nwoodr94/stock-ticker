@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Markets } from '../markets/Markets';
+import { Markets } from '../market/Market';
 import {Footer} from '../footer/Footer';
 import {Clock} from '../clock/Clock';
 
