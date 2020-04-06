@@ -1,0 +1,21 @@
+{
+  "name": "webapi",
+  "version": "1.0.0",
+  "description": "stock-api",
+  "main": "server.js",
+  "scripts": {
+    "start": "node app.js",
+    "devstart": "nodemon server.js",
+    "serverstart": "DEBUG=express-locallibrary-tutorial:* npm run devstart",
+    "test": "jest"
+  },
+  "author": "Nathan Woodruff",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "expressjs": "^1.0.1",
+    "nodemon": "^2.0.2",
+    "node-fetch": "^2.6.0"
+  }
+}
