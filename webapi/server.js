@@ -1,18 +1,16 @@
 // Express
 const express = require('express');
 const app = express()
-const cors = require('cors');
 const tickerRouter = require('./ticker/ticker.js')
 
 // Configuration
 const port = 8000;
-const host = 'http://localhost'
-const corsOptions = { origin: 'http://localhost:3000'}
+const host = 'localhost';
 
-
-// Middleware
+const cors = require('cors');
+const corsOptions = { origin: '*' };
 app.use(cors(corsOptions));
-app.use(express.json())
+
 app.use('/', tickerRouter)
 
 // Server

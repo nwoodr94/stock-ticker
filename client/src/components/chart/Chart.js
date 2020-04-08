@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { XYPlot, LineSeries, XAxis, YAxis } from 'react-vis';
 import '../../../node_modules/react-vis/dist/style.css';
 
