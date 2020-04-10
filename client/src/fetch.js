@@ -2,22 +2,29 @@ const fetch = require('node-fetch');
   
 let url = 'http://localhost:8000/api';
 
-module.exports = function callAPI(symbol) {
+export async function callAPI(symbol) {
 
-    console.log(symbol);
-
-    fetch(url, {
+    let response = await fetch(url, {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({"ticker": symbol})
     })
-        .then(response => {
-            console.log(response.status)
-            if (response.ok) {
-                return response.text();
-            }
-        }, networkError => {
-           console.log(networkError.message)
-        })
-        .then(result => console.log(result));
+    let json = await response.json();
+
+    let data = formatData(json);
+
+    return data.reverse();
 }
+
+function formatData(array) {
+
+    let time = [];
+    array.forEach(obj => time.push(obj.minute));
+  
+    let values = [];
+    array.forEach(obj => values.push(obj.open));
+
+    let json = time.map((x, i) => ({x, y: values[i]}));
+  
+    return json;
+  }

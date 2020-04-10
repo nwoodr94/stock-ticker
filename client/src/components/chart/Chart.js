@@ -1,17 +1,15 @@
 import React from 'react';
-
 import { XYPlot, LineSeries, XAxis, YAxis } from 'react-vis';
 import '../../../node_modules/react-vis/dist/style.css';
 
 export class Chart extends React.Component {
 
     componentDidMount() {
-        // TODO: node-fetch POST this.props.symbol to webapi endpoint
-        // let data = response
+        console.log(`Component did mount`);
     }
 
     render() {
-        if (this.props.display) {
+        if (this.props.data) {
             return (
                 <div className="dji">
                     {this.props.symbol}
@@ -20,13 +18,14 @@ export class Chart extends React.Component {
                         width={900} 
                         margin={{ left: 75, bottom: 75}} 
                         xType="ordinal">
-                        <LineSeries data={data} />
+                        <LineSeries data={this.props.data} />
                         <XAxis title="Time" />
                         <YAxis title="Price" />
                     </XYPlot>
                 </div>
             ) 
         }  else {
+            console.log("Chart failed to render");
             return <div />;
         }
     }
