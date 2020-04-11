@@ -22,7 +22,6 @@ export class Form extends React.Component {
     render() {
         return (
             <div className='form'>
-                {this.state.symbol}
                 <form onSubmit={this.handleSubmit}>
                     <input type="text" value={this.state.symbol} onChange={this.handleChange} />
                 </form>

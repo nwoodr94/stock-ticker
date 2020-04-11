@@ -6,27 +6,35 @@ export class Chart extends React.Component {
 
     componentDidMount() {}
 
-    limitTicks(data) {
-        return (data.length > 15) ? data.filter((item, idx) => 
-            {
-                if ((idx % Math.floor(this.props.data.length / 15)) === 0) {
-                    return item.x
+    limitTicks(arr) {
+        let ticks = []
+         //obj = {x: "10:45", y: 17.76}
+        arr.forEach(obj => {
+            let minute = obj.x.slice(-2);
+            if (minute % 15 === 0){
+                ticks.push(obj.x);
             }
-            }).map(item => (item.x)) : this.props.data.map(item => (item.x))
+        });
+        return ticks.reverse();
     }
 
     render() {
         if (this.props.data) {
             return (
                 <div className="dji">
-                    {this.props.symbol}
+                    <span style={{fontWeight: 'bold', fontSize: '5rem'}}>
+                        {this.props.symbol}
+                    </span>
                     <XYPlot 
                         height={320} 
                         width={900} 
                         margin={{ left: 75, bottom: 75}} 
                         xType="ordinal">
                         <LineSeries data={this.props.data} />
-                        <XAxis title="Time" tickValues={this.limitTicks(this.props.data)}/>
+                        <XAxis title="Time" 
+                            tickValues={this.limitTicks(this.props.data)}
+                            tickLabelAngle={-45}
+                        />
                         <YAxis title="Price" />
                     </XYPlot>
                 </div>

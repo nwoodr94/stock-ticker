@@ -14,6 +14,6 @@ export async function callAPI(symbol) {
 
     let data = await response.json();
 
-    return data.reverse();
+    return data;
 }
 

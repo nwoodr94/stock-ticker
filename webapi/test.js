@@ -1,47 +1,42 @@
-const fetch = require('node-fetch');
-const api_token = require('./private/credential.js');
+const response = require('./dummy.js');
 
-let url = new URL("https://cloud.iexapis.com/stable/stock/");
-
-async function callAPI(symbol) {
-
-    setParams(symbol);
-
-    let response = await fetch(url, {
-        method: 'GET',
-    })
-    .then(response => response.json())
-
-    let data = await formatData(response);
-
-    return data;
-}
-
-function setParams(symbol) {
-    let path = `${symbol}/intraday-prices`;
-    url.pathname += path;
-    console.log(url.pathname);
-
-    let params = {
-        "token": api_token
-    }
-    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
-}
-
-function formatData(data) {
+function formatResponse(response) {
 
     let time = [];
-    data.forEach(element => time.push(element.minute));
+    response.forEach(element => time.push(element.minute));
   
     let values = [];
-    data.forEach(element => values.push(element.open));
+    response.forEach(element => values.push(element.open));
 
     let json = time.map((x, i) => ({x, y: values[i]}));
   
     return json;
   }
 
-(async() => {
-    let data = await callAPI("amd");
-    await console.log(data);
-})();  
+let json = formatResponse(response)
+
+function limitTicksBad(data) {
+    return (data.length > 15) ? data.filter((item, idx) => 
+        {
+            if ((idx % Math.floor(data.length / 15)) === 0) {
+                return item.x
+        }
+        }).map(item => (item.x)) : data.map(item => (item.x))
+}
+
+function limitTicksGood(arr) {
+    let ticks = []
+    arr.forEach(obj => {
+        let minute = obj.x.slice(-2);
+        if (minute % 15 === 0){
+            ticks.push(obj.x);
+        }
+    })
+    return ticks.reverse();
+}
+
+let badTicks = limitTicksBad(json);
+console.log(`Bad Ticks: ${badTicks}`);
+
+let goodTicks = limitTicksGood(json);
+console.log(`Good Ticks: ${goodTicks}`);
