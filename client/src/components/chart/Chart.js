@@ -6,7 +6,7 @@ export class Chart extends React.Component {
 
     componentDidMount() {}
 
-    limitTicks(arr) {
+    formatTicks(arr) {
         let ticks = []
          //obj = {x: "10:45", y: 17.76}
         arr.forEach(obj => {
@@ -31,11 +31,11 @@ export class Chart extends React.Component {
                         margin={{ left: 75, bottom: 75}} 
                         xType="ordinal">
                         <LineSeries data={this.props.data} />
-                        <XAxis title="Time" 
-                            tickValues={this.limitTicks(this.props.data)}
+                        <XAxis title="Time (EST)" 
+                            tickValues={this.formatTicks(this.props.data)}
                             tickLabelAngle={-45}
                         />
-                        <YAxis title="Price" />
+                        <YAxis title="Price ($)" />
                     </XYPlot>
                 </div>
             ) 

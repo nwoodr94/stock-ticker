@@ -13,6 +13,7 @@ export class App extends React.Component {
   render () {
     return (
       <div className="app">
+        <Clock className="clock"/>
         <Markets />
         <Footer />
       </div>

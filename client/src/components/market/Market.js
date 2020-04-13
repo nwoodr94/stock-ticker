@@ -12,7 +12,7 @@ export class Markets extends React.Component {
     }
 
     queryMarket(symbol) {
-        console.log("submitted")
+        console.log("submitted");
         console.log(symbol);
 
         (async() => {

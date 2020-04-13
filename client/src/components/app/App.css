@@ -23,19 +23,26 @@
 }
 
 .chart {
-  margin: 1vh;
-  height: 90vh;
+  height: 80vh;
   align-self: center;
   justify-self: center;
   grid-row: 1 / span 3;
   grid-column: 2;
 }
 
+.clock {
+  width: 100%;
+  margin: 0;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+}
+
 
 footer {
   width: 100%;
   margin: 0;
-  height: 8vh;
+  height: 10vh;
   display: flex;
   align-items: center;
   justify-content: center;

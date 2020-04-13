@@ -21,9 +21,9 @@ module.exports = async function callAPI(symbol) {
     })
     .then(response => response.json());
 
-    let data = await formatData(response);
+    let arr = await formatData(response);
 
-    return data;
+    return arr;
 }
 
 // Helper Methods
@@ -43,12 +43,11 @@ function formatData(data) {
     data.forEach(element => values.push(element.average));
 
 
-    let json = time.map((x, i) => ({x, y: values[i]}));
+    let arr = time.map((x, i) => ({x, y: values[i]}));
 
-    json = json.filter(function(element) {
+    arr = arr.filter(function(element) {
         return element.y != null;
     });
   
-    
-    return json;
+    return arr;
   }
