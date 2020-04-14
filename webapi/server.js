@@ -5,7 +5,7 @@ const tickerRouter = require('./ticker/ticker.js')
 
 // Configuration
 const port = 8000;
-const host = 'localhost';
+const host = '0.0.0.0';
 
 //Middleware
 const cors = require('cors');
