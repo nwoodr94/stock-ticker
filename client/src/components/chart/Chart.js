@@ -8,7 +8,7 @@ export class Chart extends React.Component {
 
     formatTicks(arr) {
         let ticks = []
-         //obj = {x: "10:45", y: 17.76}
+        //obj = {x: "10:45", y: 17.76}
         arr.forEach(obj => {
             let minute = obj.x.slice(-2);
             if (minute % 15 === 0){

@@ -12,14 +12,10 @@ export class Markets extends React.Component {
     }
 
     queryMarket(symbol) {
-        console.log("submitted");
-        console.log(symbol);
 
         (async() => {
             try {
                 let data = await callAPI(symbol);
-                
-                await console.log(data);
                 await this.setState({ symbol: symbol, display: true, data: data });
             } catch(error) {
                 console.log(error);

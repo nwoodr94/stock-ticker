@@ -1,10 +1,8 @@
 const fetch = require('node-fetch');
   
-let url = 'http://localhost:8000/api';
+let url = `http://localhost:8000/api`;
 
 export async function callAPI(symbol) {
-
-    console.log("calling API...");
 
     let response = await fetch(url, {
         method: 'POST',

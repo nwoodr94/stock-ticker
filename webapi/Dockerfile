@@ -1,13 +1,16 @@
-FROM node:lts-alpine
+FROM node:latest
 
 WORKDIR /usr/src/app
 
-COPY package*.json .
+COPY package*.json ./
 
-RUN npm ci
+ARG API_KEY
+ENV API_KEY=${API_KEY}
 
-COPY /ticker .
+RUN npm ci --silent
+
+COPY . ./
 
 EXPOSE 8000
 
-CMD ["node", "server.js"]
+CMD ["npm", "start"]

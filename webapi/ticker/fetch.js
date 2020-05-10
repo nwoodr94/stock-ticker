@@ -1,11 +1,11 @@
+require('dotenv').config();
 const fetch = require('node-fetch');
-const api_token = require('../private/credential.js');
 
 // URL Builder
 let url = new URL("https://cloud.iexapis.com/");
 
 let params = {
-    "token": api_token
+    "token": `${process.env.API_KEY}`
     }
 
 Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
@@ -13,7 +13,7 @@ Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
 // API call for provided symbol
 module.exports = async function callAPI(symbol) {
-
+    console.log(process.cwd());
     setPath(symbol);
 
     let response = await fetch(url, {
@@ -33,7 +33,7 @@ function setPath(symbol) {
     url.pathname = `stable/stock/${symbol}/intraday-prices`;        
 }
 
-// Limit and clean data sent to client
+// Format and clean data sent to client
 function formatData(data) {
     let time = [];
     let values = [];

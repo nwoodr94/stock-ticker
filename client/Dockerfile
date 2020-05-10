@@ -1,18 +1,13 @@
-FROM node:lts-alpine AS builder
+FROM node:latest
 
 WORKDIR /usr/src/app
 
-COPY package*.json .
+COPY package*.json ./
 
-RUN npm ci
+RUN npm ci --silent
 
-COPY . .
+COPY . ./
 
-RUN npm run build
+EXPOSE 3000
 
-
-FROM nginx:stable-alpine
-
-COPY --from=builder usr/src/app/build usr/share/nginx/html
-
-EXPOSE 80
+CMD ["npm", "start"]

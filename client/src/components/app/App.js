@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import { Markets } from '../market/Market';
-import {Footer} from '../footer/Footer';
-import {Clock} from '../clock/Clock';
+import { Footer } from '../footer/Footer';
+import { Clock } from '../clock/Clock';
 
 export class App extends React.Component {
 
@@ -10,7 +10,7 @@ export class App extends React.Component {
     document.title = "Stock Ticker";
   }
 
-  render () {
+  render() {
     return (
       <div className="app">
         <Clock className="clock"/>

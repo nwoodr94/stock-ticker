@@ -1,0 +1,26 @@
+version: '3'
+services:
+    client:
+        build:
+            context: ./client
+            dockerfile: Dockerfile
+        volumes:
+            - /app/node_modules
+            - ./client:/usr/src/app/client
+        command: npm start
+        ports:
+            - '3000:3000'
+        container_name: client
+    web_api:
+        build:
+            context: ./webapi
+            dockerfile: Dockerfile
+        volumes:
+            - /app/node_modules
+            - ./webapi:/usr/src/app/webapi
+        command: npm start
+        ports: 
+            - '8000:8000'
+        env_file:
+            - ./webapi/.env 
+        container_name: webapi
